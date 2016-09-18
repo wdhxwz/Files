@@ -1,0 +1,87 @@
+1、Eclipse设置字体大小
+Window-->Preferences-->General-->Appearance-->Color and Fonts --> Basic -->Text Font
+
+2、设置智能提示
+默认只有.之后才会智能提示
+Window-->Preferences-->Java --> Editor -->Content Assist
+左边的Auto Activation的Auto Activation trigger for java的值改为：
+.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+3、代码段折叠
+使用插件：com.cb.eclipse.folding
+下载地址：http://download.csdn.net/download/huyuyang6688/9280759
+将下载的插件放置到plugins，重启eclipse
+
+4、java文件操作
+当给定的文件和路径都不存在时，会报错
+
+5、查看windows端口占用情况
+netstat -ano|findstr "端口号"
+
+6、Servlet生命周期
+Servlet类继承自HttpServlet类，包含的方法有：
+init()、service()、destroy()
+请求Servlet时，先通过init()方法进行初始化，再调用service()方法处理客户端请求，最后调用destroy()方法终止
+备注：service() 方法是执行实际任务的主要方法。Servlet 容器（即 Web 服务器）调用 service() 方法来处理来自客户端（浏览器）的请求，并把格式化的响应写回给客户端。
+每次服务器接收到一个 Servlet 请求时，服务器会产生一个新的线程并调用服务。service() 方法检查 HTTP 请求类型（GET、POST、PUT、DELETE 等），并在适当的时候调用 doGet、doPost、doPut，doDelete 等方法。
+
+7、Servlet过滤器
+	身份验证过滤器（Authentication Filters）。
+	数据压缩过滤器（Data compression Filters）。
+	加密过滤器（Encryption Filters）。
+	触发资源访问事件过滤器。
+	图像转换过滤器（Image Conversion Filters）。
+	日志记录和审核过滤器（Logging and Auditing Filters）。
+	MIME-TYPE 链过滤器（MIME-TYPE Chain Filters）。
+	标记化过滤器（Tokenizing Filters）。
+	XSL/T 过滤器（XSL/T Filters），转换 XML 内容。
+Filter的执行顺序与在web.xml配置文件中的配置顺序一致，一般把Filter配置在所有的Servlet之前
+javax.servlet.Filter ：destroy()、doFilter()、init()
+
+8、Tomcat虚拟主机设置
+       <Host name="test1.cn" appBase="webapps"
+              unpackWARs="true" autoDeploy="true" debug="0">
+		<Context path="" docBase="E:\apache-tomcat-9.0\webapps\examples" reloadable="true" crossContext="true"/>
+       </Host>
+	指定Host的name，和context的docBase路径，并且需要的系统的host文件注册映射
+
+9、Servlet异常处理
+ <!-- 异常处理 -->
+  <servlet>
+  	<servlet-name>ExceptionHandler</servlet-name>
+  	<servlet-class>com.wangdh.Test.Exception.ExceptionHandler</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ExceptionHandler</servlet-name>
+  	<url-pattern>/ExceptionHandler</url-pattern>
+  </servlet-mapping>
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/ExceptionHandler</location>
+  </error-page>
+  <error-page>
+  	<exception-type>java.lang.Exception</exception-type>
+  	<location>/ExceptionHandler</location>
+  </error-page>
+  
+ 10 Maven编译：No goals have been specified for this build.
+ 解决办法：pom.xml文件<build>标签后面加上<defaultGoal>compile</defaultGoal>即可  
+
+ 11、常见的JDBC链接字符串
+ mysql => jdbc:mysql://localhost:3306/db
+ oracle => jdbc:oracle:thin:@localhost:1521:db
+ db2 => jdbc:db2://localhost:6789/db
+ postgresql => jdbc:postgresql://localhost:5432/db
+ sysbase => jdbc:jtds:sysbase://localhost:2638/db
+ sqlserver => jdbc:microsoft:sqlserver://localhost:1433;databaseName=db
+ sqlserver2005 => jdbc:sqlserver://localhost:1433;databaseName=db
+
+ 12 struts组建：Action
+ 作用：处理请求(数据+返回字符串以选择页面)
+ 
+ 
+ 
+	
+	
+	
+	
