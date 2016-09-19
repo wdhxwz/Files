@@ -1,0 +1,32 @@
+<!-- web.xml -->
+<!-- 中文編碼 -->
+  <filter>
+  	<filter-name>CharacterEncodingFilter</filter-name>
+  	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+  	<init-param>
+  		<param-name>encoding</param-name>
+  		<param-value>utf-8</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>CharacterEncodingFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  
+  <!-- spring mvc 分发器 -->
+  <servlet>
+  	<servlet-name>spring-mvc</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<load-on-startup>1</load-on-startup>
+  	<!-- 配置文件，默認是：/WEB-INF/xxx-servlet.xml -->
+  	<init-param>
+  		<param-name>contextConfigLocation</param-name>
+  		<param-value>classpath*:springmvc-servlet.xml</param-value>
+  	</init-param>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>spring-mvc</servlet-name>
+  	<url-pattern>/</url-pattern>
+  </servlet-mapping>
