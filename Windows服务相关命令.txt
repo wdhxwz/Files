@@ -1,0 +1,40 @@
+【安装命令】sc create "serverName" start= auto binPath= "可执行文件路径，包括相关启动参数" DisplayName= "服务显示名称"
+【添加服务描述】sc description "服务名称" "服务描述"
+【启动命令】sc start "服务名称"
+【停止命令】sc stop "服务名称"
+【卸载命令】sc delete "服务名称"
+**sc == Service Command ??**
+eg:(安装memcached服务)
+sc create "Memcached2" start= auto binPath= "E:\memcached\memcached.exe -d runservice  -p 11213" DisplayName= "Memcached2"
+sc description "Memcached2" "第二个MemCached服务，端口：11213"
+sc delete "Memcached1"
+sc stop "Memcached2"
+
+sc create "RedisService" start= auto binPath="E:\redis-latest\redis-server.exe --service-run" DisplayName="RedisService"
+sc description "RedisService" "Redis缓存服务，默认端口：6379"
+
+
+sc create "RedisService2" start= auto binPath="E:\Redis2\redis-server.exe --service-run" DisplayName="RedisService2"
+sc description "Redis" "Redis缓存服务2，端口：6380"
+
+【默认安装】redis-server --service-install "配置文件"
+【指定名称和端口】redis-server --service-install -service-name 服务名称 -port 端口号
+【启动服务】redis-server --service-start -service-name 服务名称
+【卸载服务】redis-server --service-uninstall
+
+redis-server --service-install redis.windows.conf -service-name RedisService2 -port 6666
+
+redis-server --service-install -service-name RedisService2 -port 6666
+
+
+【成功】redis-cli.exe -h 127.0.0.1 -p 11111
+【成功】redis-cli.exe -h 127.0.0.1 -p 6379
+sc delete "Redis"
+
+【成功】E:\Redis2\redis-server.exe --service-install E:\Redis2\redis.windows.conf --service-name RedisService2 --port 11111
+sc description "RedisService2" "Redis缓存服务2，端口：11111"
+
+
+
+
+
