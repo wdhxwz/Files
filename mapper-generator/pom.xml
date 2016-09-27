@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>MBG</groupId>
+	<artifactId>MBG</artifactId>
+	<version>1.0.0.0</version>
+	<name>MBG</name>
+	<!-- 属性定义 -->
+	<properties>
+		<!-- mybatis generator -->
+		<!-- 项目代码目录 -->
+		<targetJavaProject>${basedir}/src/main/java</targetJavaProject>
+		<!-- mapper接口生成目录 -->
+		<targetMapperPackage>com.mybatis.mapper</targetMapperPackage>
+		<!-- 实体类生成目录 -->
+		<targetModelPackage>com.mybatis.model</targetModelPackage>
+		<!-- 项目配置目录 -->
+		<targetResourcesProject>${basedir}/src/main/resources</targetResourcesProject>
+		<!-- xml生成目录 -->
+		<targetXMLPackage>mapper</targetXMLPackage>
+
+		<!-- 版本依赖 -->
+		<sqlserver.version>4.0</sqlserver.version>
+		<mapper.version>3.3.9</mapper.version>
+	</properties>
+
+
+	<dependencies>
+		<!-- mybatis通用mapper插件 -->
+		<dependency>
+			<groupId>tk.mybatis</groupId>
+			<artifactId>mapper</artifactId>
+			<version>${mapper.version}</version>
+		</dependency>
+		<!-- SqlServer 驱动 -->
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>sqljdbc4</artifactId>
+			<version>${sqlserver.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- mapper generator maven 插件 -->
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.2</version>
+				<configuration>
+					<configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>
+					<overwrite>true</overwrite>
+					<verbose>true</verbose>
+				</configuration>
+				<dependencies>
+					<!-- 插件的jdbc依赖 -->
+					<dependency>
+						<groupId>com.microsoft.sqlserver</groupId>
+						<artifactId>sqljdbc4</artifactId>
+						<version>${sqlserver.version}</version>
+					</dependency>
+					<!-- 插件的mapper依赖 -->
+					<dependency>
+						<groupId>tk.mybatis</groupId>
+						<artifactId>mapper</artifactId>
+						<version>${mapper.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+</project>
