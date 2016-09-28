@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- 引入数据库配置文件 -->
+	<properties resource="config.properties" />
+
+	<context id="sqlserver" targetRuntime="MyBatis3Simple"
+		defaultModelType="flat">
+		<property name="beginningDelimiter" value="`" />
+		<property name="endingDelimiter" value="`" />
+
+		<!-- 插件 -->
+		<plugin type="${mapper.plugin}">
+			<property name="mappers" value="${mapper.myMapper}" />
+		</plugin>
+
+		<!-- 数据库配置 -->
+		<jdbcConnection driverClass="${jdbc.sqlserver.driverClass}"
+			connectionURL="${jdbc.sqlserver.url}" userId="${jdbc.sqlserver.user}"
+			password="${jdbc.sqlserver.password}">
+		</jdbcConnection>
+
+		<!-- 实体类生成目录配置 -->
+		<javaModelGenerator targetPackage="${targetModelPackage}"
+			targetProject="${targetJavaProject}" />
+
+		<!-- mapper接口生成目录 -->
+		<sqlMapGenerator targetPackage="${targetXMLPackage}"
+			targetProject="${targetResourcesProject}" />
+
+		<!-- xml文件生成目录 -->
+		<javaClientGenerator targetPackage="${targetMapperPackage}"
+			targetProject="${targetJavaProject}" type="XMLMAPPER" />
+
+		<!-- 配置表 -->
+		<table tableName="film" domainObjectName="Film" />
+		<table tableName="student" domainObjectName="Student" />
+	</context>
+</generatorConfiguration>       
+        
+        
+        
