@@ -1,0 +1,7 @@
+1、添加maven依赖：spring+mybatis等
+2、添加数据库配置文件：dbconfig.properties
+3、添加spring框架配置文件：spring-context.xml
+4、添加spring-mybatis配置文件：spring-mybatis.xml
+5、配置web.xml文件
+
+
