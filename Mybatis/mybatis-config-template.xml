@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE configuration
+	    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>	
+	<!-- 定义属性 -->
+	<properties resource="">
+		<property name="username" value="wangdh"/>
+		<property name="password" value="12345678"/>
+	</properties>
+	<!-- mybatis 全局设置 -->
+	<settings>
+		<setting name="cacheEnabled" value="true"/>
+		<setting name="lazyLoadingEnabled" value="true"/>
+		<setting name="multipleResultSetsEnabled" value="true"/>
+		<setting name="useColumnLabel" value="true"/>
+		<setting name="useGeneratedKeys" value="false"/>
+		<setting name="autoMappingBehavior" value="PARTIAL"/>
+		<setting name="autoMappingUnknownColumnBehavior" value="WARNING"/>
+		<setting name="defaultExecutorType" value="SIMPLE"/>
+		<setting name="defaultStatementTimeout" value="25"/>
+		<setting name="defaultFetchSize" value="100"/>
+		<setting name="safeRowBoundsEnabled" value="false"/>
+		<setting name="mapUnderscoreToCamelCase" value="false"/>
+		<setting name="localCacheScope" value="SESSION"/>
+		<setting name="jdbcTypeForNull" value="OTHER"/>
+		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
+	</settings>	
+	<!-- 为JAVA类型指定别名 -->	
+	<typeAliases>
+		<typeAliase alias="Author" type="com.mybatis.spring.model.Author"/>
+		<!-- 使用包名配置 -->
+		<!-- <package name="com.mybatis.spring.model"/> -->
+	</typeAliases>
+
+		
+		
+		
+		
+		
+</configuration>		
