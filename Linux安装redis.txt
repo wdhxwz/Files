@@ -21,7 +21,7 @@ CLIEXEC=/usr/software/redis/bin/redis-cli
 $EXEC $CONF 朔紗&
 
 3、mkdir /etc/redis
-4、cp /usr/software/redis/redis.config /etc/redis/6379.config
+4、cp /usr/software/redis/redis.config /etc/redis/6379.conf
 5、chkconfig --add redis
 6、service redis start
 7、vi /etc/profile
