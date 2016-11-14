@@ -14,7 +14,7 @@
 
 # description:  Redis is a persistent key-value database
 
-ÐÞ¸Ä
+ÐÞ¸Ä   
 EXEC=/usr/software/redis/bin/redis-server
 CLIEXEC=/usr/software/redis/bin/redis-cli
 
