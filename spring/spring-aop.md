@@ -110,10 +110,141 @@
 |<aop:declare-parents>|以透明的方式为被通知的对象引入额外的接口|
 |<aop:pointcut>|定义一个切点|
 
+######相关示例代码
+
+	/**
+	 * @author 王东鸿
+	 * @Copyright (c) 2016, frontpay.cn
+	 * @date 2016年11月10日 下午3:36:28
+	 */
+	public class StudentServiceAspect {
+		public void doBefore(JoinPoint joinPoint) {
+			String className = joinPoint.getTarget().getClass().getName();
+			System.out.println("类名：" + className);
+			String methodName = joinPoint.getSignature().getName();
+			System.out.println("方法名：" + methodName);
+			Object[] args = joinPoint.getArgs();
+			int index = 1;
+			for (Object object : args) {
+				System.out.println("参数" + index + ":" + object.toString());
+				index++;
+			}
+	
+			// 连接点类型
+			System.out.println("连接点类型:" + joinPoint.getKind());
+	
+			// 执行切面逻辑的类
+			System.out.println("执行切面逻辑的类:" + joinPoint.getTarget());
+	
+			// 执行切面的方法
+			System.out.println("执行切面的方法:" + joinPoint.getSignature());
+	
+			// 这个不知是啥:
+			System.out.println("这个不知是啥:" + joinPoint.getSourceLocation());
+	
+			// 这个也不知是啥
+			System.out.println("这个也不知是啥:" + joinPoint.getStaticPart());
+		}
+	
+		public void doAfter(JoinPoint joinPoint, Object returnValue) {
+			String className = joinPoint.getTarget().getClass().getName();
+			System.out.println("类名：" + className);
+			String methodName = joinPoint.getSignature().getName();
+			System.out.println("方法名：" + methodName);
+			System.out.println("返回值:" + JSON.toJSON(returnValue));
+		}
+	
+		public void after(JoinPoint joinPoint) {
+			System.out.println("最终返回后执行(不管是正常执行还是抛异常)");
+		}
+	
+		public void doException(Exception e) {
+			System.out.println("抛出异常后执行:" + e.getMessage());
+		}
+	
+		public void doAround() {
+			System.out.println("环绕通知");
+		}
+	}
+
 ### 注解编写Spring AOP
 Spring AOP有如下的注解：
 >http://blog.csdn.net/evankaka/article/details/45394409
 
 |注解|说明|
-|-|-|
+|:-|:-|
 |@Aspect|标注一个类为切面类|
+|@Pointcut（value="切入点表达式", argNames = "参数名列表")|声明一个切入点，该切入点可被共用，切入点作用的函数名称就是该切入点的id|
+|@Before(value = "切入点表达式或命名切入点", argNames = "参数列表参数名")  |声明一个前置通知|
+|@AfterReturning(value="切入点表达式或命名切入点", pointcut="切入点表达式或命名切点", argNames="参数列表参数名", returning="返回值对应参数名")|声明一个后置返回通知|
+|@AfterThrowing(value="切入点表达式或命名切入点",pointcut="切入点表达式或命名切入点",    argNames="参数列表参数名",throwing="异常对应参数名")|声明一个后置异常通知|
+|@After(value="切入点表达式或命名切入点",argNames="参数列表参数名") |声明一个后置最终通知|
+|@Around (value="切入点表达式或命名切入点",argNames="参数列表参数名")  |声明一个后置通知|
+
+######下面是示例代码
+
+	/**
+	 * 定义成切面，同时也是一个组件
+	 * 
+	 * @author 王东鸿
+	 * @Copyright (c) 2016, frontpay.cn
+	 * @date 2016年11月29日 下午4:17:41
+	 */
+	@Aspect
+	@Component
+	public class AnnotationAspect {
+		/**
+		 * 定义切点，该方法的名称就是该切点的id
+		 */
+		@Pointcut("execution(* com.wangdh.spring.aop.demo.*.*(..))")
+		public void pointCut() {
+	
+		}
+	
+		@Before(value = "execution(* com.wangdh.spring.aop.demo.*.*(..))", argNames = "")
+		public void doBefore(JoinPoint joinPoint) {
+			System.out.println("开始执行：" + joinPoint.getSignature().toString());
+		}
+	
+		@After(value = "pointCut()", argNames = "")
+		public void doAfter(JoinPoint joinPoint) {
+			System.out.println("执行结束：" + joinPoint.getSignature().toString());
+		}
+	
+		@AfterReturning(pointcut = "pointCut()", returning = "result", argNames = "")
+		public void doAfterReturning(JoinPoint joinPoint, Object result) {
+			System.out.println("执行结束：" + joinPoint.getSignature().toString() + ",返回值：" + result);
+		}
+	
+		@AfterThrowing(pointcut = "pointCut()",throwing = "ex")
+		public void doThrowing(JoinPoint joinPoint, Throwable  ex) {
+			System.out.println("执行方法：" + joinPoint.getSignature() + "，发生异常：" + ex.getMessage());
+		}
+	
+		/**
+		 * 有这个之后异常不处理了
+		 */
+		//	@Around(argNames = "", value = "pointCut()")
+		//	public void doAround(JoinPoint joinPoint) {
+		//
+		//	}
+	}
+
+######相关的配置文件如下
+
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	     http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	     http://www.springframework.org/schema/aop
+	     http://www.springframework.org/schema/aop/spring-aop.xsd
+	     http://www.springframework.org/schema/context 
+	     http://www.springframework.org/schema/context/spring-context.xsd">
+		<!-- 指定组件扫描的包 -->
+		<context:component-scan base-package="com.wangdh.spring.aop.demo"/>
+		<!-- 开启aop自动代理 -->
+		<aop:aspectj-autoproxy proxy-target-class="true"/>
+	</beans>
