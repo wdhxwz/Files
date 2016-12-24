@@ -35,6 +35,10 @@ sc delete "Redis"
 sc description "RedisService2" "Redis缓存服务2，端口：11111"
 
 
+【成功】E:\RedisCluster\port6378\redis-server.exe --service-install E:\RedisCluster\port6378\redis.conf --service-name Redis6378 --port 6378
+sc description "Redis6378" "Redis缓存服务，端口：6378"
+
+
 
 
 
