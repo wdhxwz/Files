@@ -1,6 +1,4 @@
-###RabbitMQ安装
-
-#### windows下安装RabbitMQ
+#### Windows下安装
 
 - 下载安装包
 
@@ -16,21 +14,7 @@
 
 	在windows下的安装只需下一步，下一步。默认是自动启动的，可以通过开始菜单进行stop/reinstall/start RabbitMQ服务
 
-- 端口连接
-
-	RabbitMQ默认会使用下面的端口号，如果端口号别其他程序占用，则RabbitMQ会启动失败。
-
-		4369，5672,5671,25672,15672,61613,61614,1881,8883
-
-	可以通过配置修改这些默认端口：参见[网络配置](http://www.rabbitmq.com/networking.html)
-
-- 默认用户连接
-
-	默认创建了一个guest/guest用户，具体的可以参见[连接控制](http://www.rabbitmq.com/access-control.html)
-
 #### linux下安装
-
->[http://www.rabbitmq.com/install-rpm.html](http://www.rabbitmq.com/install-rpm.html)
 
 - 安装包下载
 
@@ -54,25 +38,11 @@
 			rabbitmq-plugins enable rabbitmq_management  
 			service rabbitmq-server restart  
 
->http://blog.csdn.net/mlks_2008/article/details/18988301
->http://jingyan.baidu.com/article/e4d08ffdb3ff090fd2f60d28.html
 
-			
+- 学习资料
 
+>[http://blog.csdn.net/mlks_2008/article/details/18988301](http://blog.csdn.net/mlks_2008/article/details/18988301)
 
+>[http://jingyan.baidu.com/article/e4d08ffdb3ff090fd2f60d28.html](http://jingyan.baidu.com/article/e4d08ffdb3ff090fd2f60d28.html)
 
-
-#### 启动Web管理插件
-
-- windows环境
-
-		安装目录：C:\Program Files\RabbitMQ Server\rabbitmq_server-3.6.5
-		cmd进入下面的路径，执行：rabbitmq-plugins enable rabbitmq_management
-		浏览器访问：http://localhost:15672
-		登录名：guest
-		密码：guest
-
-- linux环境
-
-		rabbitmq-plugins enable rabbitmq_management  
-		service rabbitmq-server restart
+>[http://www.rabbitmq.com/install-rpm.html](http://www.rabbitmq.com/install-rpm.html)
