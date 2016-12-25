@@ -24,7 +24,7 @@ RabbitMQ服务器主要是通过RabbitCtl和RabbitMQ-plugins两个工具来管�
 		新建用户：rabbitmqctl add_user {username} {password}
 		删除用户：rabbitmqctl delete_user {username}
 		修改密码：rabbitmqctl change_password {username} {new password}
-		设置角色：rabbitmq set_user_tags {username} {tag...}
+		设置角色：rabbitmqctl set_user_tags {username} {tag...}
 			备注：tag可以为administrator,monitoring,management
 
 - 权限管理
