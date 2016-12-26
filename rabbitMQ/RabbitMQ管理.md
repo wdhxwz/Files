@@ -7,6 +7,7 @@ RabbitMQ服务器主要是通过RabbitCtl和RabbitMQ-plugins两个工具来管�
 		启动：rabbitmq-server –detached
 		关闭：rabbitmqctl stop
 		备注：若单机有多个实例，则在rabbitmqctlh后加–n 指定名称
+			-detached参数使得rabbitmq以守护进程的方式在后台运行
 
 - 插件管理
 
