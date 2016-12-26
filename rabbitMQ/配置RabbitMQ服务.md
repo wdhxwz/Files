@@ -1,4 +1,4 @@
-### 配置RabbitMQ服务
+### RabbitMQ服务配置
 
 #### 配置路径
 
