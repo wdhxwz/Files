@@ -30,20 +30,29 @@ RabbitMQ服务器主要是通过RabbitCtl和RabbitMQ-plugins两个工具来管�
 
 - 权限管理
 	
-		权限设置：set_permissions [-p vhostpath] {user} {conf} {write} {read}
+		权限设置：rabbitmqctl set_permissions [-p vhostpath] {user} {conf} {write} {read}
+		删除权限：rabbitmqctl clear_permissions [-p vhostpath] {user}
+		列出权限：rabbitmqctl list_permissions [-p vhostpath]
+		备注：-p vhostpath 指定虚拟主机，不指定为跟虚拟主机/
+		{conf}{write}{read}表示执行，写，读权限，是正则表达式配置：
+		".*":匹配所有的交换器和队列
+		"checks-.*":匹配所有以checks-开头的交换器和队列
+		"":不匹配队列和交换器
+
+
+
 
 - 获取服务器状态信息
 
 		服务器状态:rabbitmqctl status
 		队列信息：rabbitmqctl list_queues [-p vhostpath] [queueu info item]
-		Queueinfoitem可以为：name，durable，auto_delete，arguments，messages_ready，
-                messages_unacknowledged，messages，consumers，memory
-		Exchange信息：rabbitmqctl list_exchanges[-p vhostpat
-		[exchangeinfoitem ...]
-                 Exchangeinfoitem有：name，type，durable，auto_delete，internal，arguments.
-		Binding信息：rabbitmqctl list_bindings[-p vhostpath] [bindinginfoitem ...]       
-                 Bindinginfoitem有：source_name，source_kind，destination_name，destination_kind，routing_key，arguments
+			Queueinfoitem可以为：name，durable，auto_delete，arguments，messages_ready，messages_unacknowledged，messages，consumers，memory
+		交换器信息：rabbitmqctl list_exchanges[-p vhostpat] [exchangeinfoitem]
+            Exchangeinfoitem有：name，type，durable，auto_delete，internal，arguments.
+		Binding信息：rabbitmqctl list_bindings[-p vhostpath] [bindinginfoitem]       
+            Bindinginfoitem有：source_name，source_kind，destination_name，destination_kind，routing_key，arguments
 		Connection信息：rabbitmqctl list_connections [connectioninfoitem ...
 		Connectioninfoitem有：recv_oct，recv_cnt，send_oct，send_cnt，send_pend等。
 		Channel信息：rabbitmqctl  list_channels[channelinfoitem ...]
 		Channelinfoitem有consumer_count，messages_unacknowledged，messages_uncommitted，acks_uncommitted，messages_unconfirmed，prefetch_count，client_flow_blocked
+
