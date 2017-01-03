@@ -60,6 +60,10 @@
 
 		headers类型的Exchange不依赖于routing key与binding key的匹配规则来路由消息，而是根据发送的消息内容中的headers属性进行匹配。
 
+- bidingKey:将消费者和队列绑定的key，将交换器和队列绑定的key
+
+- routeKey：发布消息时指定的key，交换器会根据该key与绑定时的key进行对比，匹配时就将消息发送到匹配key绑定的队列
+
 -  Connection
 
 		 就是一个TCP的连接。Producer和Consumer都是通过TCP连接到RabbitMQ Server的
