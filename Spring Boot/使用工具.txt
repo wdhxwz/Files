@@ -1,0 +1,5 @@
+使用工具：Spring Tool Suite
+下载地址：http://spring.io/tools/sts
+
+Eclipse安裝STS插件：Help->Eclipse Marketplace
+输入Spring Tool Suite 进行搜索
