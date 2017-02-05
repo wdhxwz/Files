@@ -31,7 +31,7 @@
 
 		<!-- SqlServer 驱动 -->
 		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>sqljdbc4</artifactId>
-			<version>4.0</version>
+			<groupId>com.hynnet</groupId>
+			<artifactId>sqljdbc4-chs</artifactId>
+			<version>4.0.2206.100</version>
 		</dependency>
