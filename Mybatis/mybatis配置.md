@@ -161,11 +161,47 @@ Maybatis的Xml配置文件包含一些设置和属性，用于增强Mybatis的�
 
 - environment配置节
 
+Mybatis支持配置多个dataSource环境，可以将应用部署到不同的环境上，如开发环境，测试环境等。
 
+通过将default的值设置为environment的id即可进行环境切换。
 
+如果应用需要连接多个数据库，需要将每个数据库配置成独立的环境，并且为每个数据库创建一个SqlSessionFactory。
 
+	/**
+	 * 获取数据库访问工厂
+	 * 
+	 * @return SqlSessionFactory
+	 */
+	public static SqlSessionFactory getSqlSessionFactory(String configFile, String enviroment) {
+		SqlSessionFactory _sqlSessionFactory = null;
+		InputStream inputStream;
+		if (configFile == null || configFile.length() == 0) {
+			configFile = "mybatisConfig.xml";
+		}
+		try {
+			inputStream = Resources.getResourceAsStream(configFile);
+			_sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream, enviroment);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
+		return _sqlSessionFactory;
+	}
 
+创建SqlSessionFactory时，如果没有明确指定环境environment，则使用默认的environment进行创建。
+
+- 数据源DataSource
+
+dataSource元素用来配置数据库连接属性：数据库地址，驱动类，账号和密码。
+
+	<dataSource type="POOLED">
+		<property name="driver" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.userName}" />
+		<property name="password" value="${jdbc.password}" />
+	</dataSource>
+
+dataSource有3种类型：UNPOOLED，POOLED，JNDI
 
 
 
