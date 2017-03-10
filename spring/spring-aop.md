@@ -53,11 +53,30 @@
 >备注：execution指示器是实际执行匹配的，而其他只是器是限制匹配的
 
 2. 编写切点
-<br/>execution(* com.wangdh.spring.aop.test(..))
 
-*：表示返回值的类型为任意或空
-<br/>只匹配test方法
-<br/>..：表示匹配任意参数
+execution( \<scope> <return-type> <fully-qualified-class-name>.<function-name>(parameters))
+
+execution(* com.wangdh.spring.aop.test(..))
+
+通配符：
+
+*：该通配符匹配任何数量的字符
+<br/>+ ：该通配符匹配给定类的任何子类
+<br/>..：该通配符匹配方法中任何数量的参数，此外还匹配类定义中任何数量的包(包的时候不能放在开头)
+
+例子：
+
+execution(* com.wangdh.learner.spring.aop.MyBean.*(..)) 匹配MyBean中的所有方法
+
+execution(public * com.wangdh.learner.spring.aop.MyBean.*(..)) 匹配MyBean中的所有公共方法
+
+execution(public String com.wangdh.learner.spring.aop.MyBean.*(..)) 匹配MyBean中返回String的所有公共方法
+
+execution(public * com.wangdh.learner.spring.aop.MyBean.*(String,..)) 匹配MyBean中第一个参数被定义为String的所有公共方法
+
+
+
+
 ### XML中配置AOP
 
 	<?xml version="1.0" encoding="UTF-8"?>
@@ -248,3 +267,17 @@ Spring AOP有如下的注解：
 		<!-- 开启aop自动代理 -->
 		<aop:aspectj-autoproxy proxy-target-class="true"/>
 	</beans>
+
+
+### Aop接口
+
+|类型|接口|执行点|
+|:-|:-|:-|
+|Before|org.springframework.aop.MethodBeforeAdvice|在接合点之前通知|
+|After Returning|org.springframework.aop.AfterReturningAdvice|在接合点执行完之后通知|
+|After Throwing|org.springframework.aop.ThrowsAdvice|接合点抛出异常后通知|
+|After(Finally)|N/A|接合点执行完毕后通知，不管是正常执行还是抛异常|
+|Around|N/A|在接合点周围通知，可以在接合点之前及之后执行通知|
+
+
+
