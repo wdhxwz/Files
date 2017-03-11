@@ -280,4 +280,15 @@ Spring AOP有如下的注解：
 |Around|N/A|在接合点周围通知，可以在接合点之前及之后执行通知|
 
 
+- ThrowsAdvice接口
+
+ThrowsAdvice接口只是一个标记接口，并不含任何方法签名，当实现了该接口的类，必须需要实现下面所示方法的一个，所实现的方法将被反射调用：
+
+public void afterThrowing(Exception ex);
+
+public void afterThrowing(RemoteException);
+
+public void afterThrowing(Method method,Object[] args,Object target,Exception ex);
+
+public void afterThrowing(Method method,Object[] args,Object target,ServletException ex);
 
