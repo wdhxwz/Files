@@ -32,15 +32,24 @@ Docker支持CentOS 6及以后版本。
 
 
 
+
+### 各系统配置文件路径
+
+	Ubuntu/Debian : /etc/default/docker
+	Upstart系统 : /etc/init/docker.conf
+	RedHad/Redora/Centos : /etc/sysconfig/docker
+	Systemd : /usr/lib/systemd/system/docker.service
+
+
 ### 杂项
 
-可执行文件路径：/usr/bin/docker   
-配置文件路径：/etc/sysconfig/docker   
-163镜像中心：https://c.163.com/hub#/m/repository/?repoId=2968  
-DockerPool社区的镜像源:dl.dockerpool.com
-docker数据存储路径：/var/lib/docker  
-修改仓库位置： DOCKER_OPTS="--insecure-registry=hub.c.163.com"
-
+	可执行文件路径：/usr/bin/docker   
+	配置文件路径：/etc/sysconfig/docker   
+	163镜像中心：https://c.163.com/hub#/m/repository/?repoId=2968  
+	DockerPool社区的镜像源:dl.dockerpool.com
+	docker数据存储路径：/var/lib/docker  
+	修改仓库位置： other_args="--insecure-registry hub.c.163.com -H unix:///var/run/docker.sock -H 0.0.0.0:43988"  
+	加速服务： curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://fb4e85e4.m.daocloud.io
 
 
 
