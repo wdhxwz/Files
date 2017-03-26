@@ -42,7 +42,7 @@ nginx依赖以下模块：
 
 	vim /etc/profile
 	export NGINX_HOME=/usr/local/nginx
-	export PATH=$PATH:$NGINX_HOME
+	export PATH=$PATH:$NGINX_HOME/sbin
 	source /etc/profile
 
 
