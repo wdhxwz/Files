@@ -46,7 +46,7 @@
 
 - 交换器类型：fanout、direct、top、headers
 
-		fanout：分列，会把所有发送到该Exchange的消息路由到所有与它绑定的Queue中，此时routing key是不起作用的。
+		fanout：分发，会把所有发送到该Exchange的消息路由到所有与它绑定的Queue中，此时routing key是不起作用的。
 
 		direct：重定向，会把消息路由到那些binding key与routing key***完全匹配***的Queue中
 
