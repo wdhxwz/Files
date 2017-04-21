@@ -56,7 +56,19 @@ nginx依赖以下模块：
 
 
 
+### 简单安装
 
+	 yum -y update
+	 yum -y install pcre*
+	 yum -y install openssl*
+	 yum -y install wget
+	 wget http://nginx.org/download/nginx-1.7.8.tar.gz
+	 tar -zxvf nginx-1.7.8.tar.gz
+	 yum -y  install gcc
+	 yum -y install gcc-c++
+	 cd /nginx-1.7.8/
+	 ./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-http_spdy_module --with-http_stub_status_module --with-pcre
+	 make & make install
 
 
 
