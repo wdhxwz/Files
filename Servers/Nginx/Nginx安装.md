@@ -66,7 +66,7 @@ nginx依赖以下模块：
 	 tar -zxvf nginx-1.7.8.tar.gz
 	 yum -y  install gcc
 	 yum -y install gcc-c++
-	 cd /nginx-1.7.8/
+	 cd nginx-1.7.8/
 	 ./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-http_spdy_module --with-http_stub_status_module --with-pcre
 	 make & make install
 

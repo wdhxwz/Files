@@ -120,7 +120,7 @@
 
 	cp /etc/fdfs/client.conf.sample /etc/fdfs/client.conf    
 	vim /etc/fdfs/client.conf
-	/usr/bin/fdfs_test /etc/fdfs/client.conf upload /home/wangdh/test.png     
+	/usr/bin/fdfs_test /etc/fdfs/client.conf upload /home/wangdh/aaa.png     
 
 	[root@localhost fdfs]# /usr/bin/fdfs_test /etc/fdfs/client.conf upload /home/wangdh/test.png
 	This is FastDFS client test program v5.05
@@ -175,8 +175,8 @@
 	base_path=/home/zq/fastdfs
 	url_have_group_name = true（配置多个tracker时，应该将此项设置为true）
 
-	cp /home/wangdh/fastdfs-5.05/confhttp.conf /etc/fdfs
-	cp /home/wangdh/fastdfs-5.05/confmime.types /etc/fdfs  
+	cp /home/wangdh/fastdfs-5.05/conf/http.conf /etc/fdfs
+	cp /home/wangdh/fastdfs-5.05/conf/mime.types /etc/fdfs  
 
 	yum -y update
 	yum -y install pcre*
@@ -190,7 +190,21 @@
 	make & make install
 
 
+### 配置nginx模块 和nginx配置文件
 
+	vim /etc/fdfs/mod_fastdfs.conf
+	vim /usr/local/nginx/conf/nginx.conf
+
+	添加如下内容：
+	
+	location /group1/M00{
+            ngx_fastdfs_module;
+        }
+		
+	这里的group1是组名，需要和mod_fastdfs.conf中的一致。
+
+
+> 如果一台机器上部署了多个storage节点，nginx如何代理
 
 ### FastDFS可用的命令(/usr/bin)
 

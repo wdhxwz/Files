@@ -19,7 +19,7 @@ Docker支持CentOS 6及以后版本。
 
 对于CentOS 7，使用下面命令安装：
 
-	sudo yum instanll -y docker
+	sudo yum install -y docker
 
 
 ### Ubuntu中安装Docker
