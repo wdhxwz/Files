@@ -206,6 +206,46 @@
 
 > 如果一台机器上部署了多个storage节点，nginx如何代理
 
+	
+		/etc/fdfs/mod_fastdfs.conf 配置文件配置如下
+
+		connect_timeout=2
+		network_timeout=30
+		base_path=/tmp
+		load_fdfs_parameters_from_tracker=false
+		storage_sync_file_max_delay = 86400
+		use_storage_id = false
+		storage_ids_filename = storage_ids.conf
+		tracker_server=192.168.9.64:22122
+		url_have_group_name = true # 访问时一定要带上组名
+		log_level=info
+		log_filename=
+		response_mode=proxy
+		if_alias_prefix=
+		flv_support = true
+		flv_extension = flv
+		group_count = 2  # 如果有多个组，这里配置组的数量(非0)
+		[group1] # 标示组1，下面是组1的配置
+		group_name=wangdh
+		storage_server_port=23000
+		store_path_count=1
+		store_path0=/data/fastdfs/storage/group1
+		[group2] # 标示组2，下面是组2的配置
+		group_name=wangdh02
+		storage_server_port=23001
+		store_path_count=1
+		store_path0=/data/fastdfs/storage/group2
+
+	nginx.conf需要为每个组做配置，如下：
+
+	location /wangdh/{
+            ngx_fastdfs_module;
+        }
+
+	location /wangdh02/{
+            ngx_fastdfs_module;
+        }
+
 ### FastDFS可用的命令(/usr/bin)
 
 	fdfs_appender_test
