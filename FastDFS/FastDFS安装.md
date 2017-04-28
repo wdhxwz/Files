@@ -246,6 +246,11 @@
             ngx_fastdfs_module;
         }
 
+	 location ~* /(.+?)/M00 {
+	      root /home/dfs/fdfs/$1/data/M00;
+	      ngx_fastdfs_module;
+	   }
+
 ### FastDFS可用的命令(/usr/bin)
 
 	fdfs_appender_test
