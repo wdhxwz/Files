@@ -62,7 +62,7 @@ Redis哨兵系统是一个分布式系统，可以进行集群部署，避免单
 	SENTINEL reset <pattern>  ： 重置所有名字和给定模式 pattern 相匹配的主服务器。重置操作清除主服务器目前的所有状态， 包括正在执行中的故障转移， 并移除目前已经发现和关联的， 主服务器的所有从服务器和 Sentinel 。
 	SENTINEL failover <master name>  ： 当主服务器失效时， 在不询问其他 Sentinel 意见的情况下， 强制开始一次自动故障迁移，但是它会给其他sentinel发送一个最新的配置，其他sentinel会根据这个配置进行更新
 
-
+> 所有redis节点都指定bind的值为机器所在IP
 
 
 
