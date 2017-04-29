@@ -27,12 +27,6 @@
 	cd libfastcommon-1.0.7
 	./make.sh
 	./make.sh install
-	
-	[root@localhost libfastcommon-1.0.7]# ./make.sh install
-	mkdir -p /usr/lib64
-	install -m 755 libfastcommon.so /usr/lib64
-	mkdir -p /usr/include/fastcommon
-	install -m 644 common_define.h hash.h chain.h logger.h base64.h shared_func.h pthread_func.h ini_file_reader.h _os_bits.h sockopt.h sched_thread.h http_func.h md5.h local_ip_func.h avl_tree.h ioevent.h ioevent_loop.h fast_task_queue.h fast_timer.h process_ctrl.h fast_mblock.h connection_pool.h /usr/include/fastcommon
 
  	ln -s /usr/lib64/libfastcommon.so /usr/local/lib/libfastcommon.so 
 	ln -s /usr/lib64/libfastcommon.so /usr/lib/libfastcommon.so 
@@ -45,31 +39,30 @@
 	./make.sh
 	./make.sh install
 
-	[root@localhost fastdfs-5.05]# ./make.sh install
-	mkdir -p /usr/bin
-	mkdir -p /etc/fdfs
-	cp -f fdfs_trackerd /usr/bin
-	if [ ! -f /etc/fdfs/tracker.conf.sample ]; then cp -f ../conf/tracker.conf /etc/fdfs/tracker.conf.sample; fi
-	mkdir -p /usr/bin
-	mkdir -p /etc/fdfs
-	cp -f fdfs_storaged  /usr/bin
-	if [ ! -f /etc/fdfs/storage.conf.sample ]; then cp -f ../conf/storage.conf /etc/fdfs/storage.conf.sample; fi
-	mkdir -p /usr/bin
-	mkdir -p /etc/fdfs
-	mkdir -p /usr/lib64
-	cp -f fdfs_monitor fdfs_test fdfs_test1 fdfs_crc32 fdfs_upload_file fdfs_download_file fdfs_delete_file fdfs_file_info fdfs_appender_test fdfs_appender_test1 fdfs_append_file fdfs_upload_appender /usr/bin
-	if [ 0 -eq 1 ]; then cp -f libfdfsclient.a /usr/lib64; fi
-	if [ 1 -eq 1 ]; then cp -f libfdfsclient.so /usr/lib64; fi
-	mkdir -p /usr/include/fastdfs
-	cp -f ../common/fdfs_define.h ../common/fdfs_global.h ../common/mime_file_parser.h ../common/fdfs_http_shared.h ../tracker/tracker_types.h ../tracker/tracker_proto.h ../tracker/fdfs_shared_func.h ../storage/trunk_mgr/trunk_shared.h tracker_client.h storage_client.h storage_client1.h client_func.h client_global.h fdfs_client.h /usr/include/fastdfs
-	if [ ! -f /etc/fdfs/client.conf.sample ]; then cp -f ../conf/client.conf /etc/fdfs/client.conf.sample; fi
-
-
  	ln -s /usr/lib64/libfdfsclient.so /usr/local/lib/libfdfsclient.so 
 	ln -s /usr/lib64/libfdfsclient.so /usr/lib/libfdfsclient.so 
 
 > /usr/bin 存放有编译出来的文件   
 > /etc/fdfs 存放有配置文件
+
+### FastDFS可用的命令(/usr/bin)
+
+	fdfs_appender_test
+	fdfs_appender_test1
+	fdfs_append_file
+	fdfs_crc32
+	fdfs_delete_file
+	fdfs_download_file
+	fdfs_file_info
+	fdfs_monitor
+	fdfs_storaged
+	fdfs_test
+	fdfs_test1
+	fdfs_trackerd
+	fdfs_upload_appender
+	fdfs_upload_file
+	restart.sh
+	stop.sh
 
 
 ### 配置 tracker 服务
@@ -79,7 +72,6 @@
 	vim tracker.conf
 
 > 修改 base_path=/data/fastdfs/tracker/data-and-log   
-> http.server_port=9090
 
 
 ### 启动tracker服务
@@ -102,11 +94,8 @@
 
 > base_path=/data/fastdfs/tracker/data-and-log  
 > store_path0=/data/fastdfs/storage/images-data0  
-> store_path1=/data/fastdfs/storage/images-data1 
-> store_path2=/data/fastdfs/storage/images-data2 
 > tracker_server=192.168.77.132:22122    
 > http.server_port=9999
-
 
 ### 启动存储服务
 
@@ -119,7 +108,7 @@
 利用自带的 client 进行测试  
 
 	cp /etc/fdfs/client.conf.sample /etc/fdfs/client.conf    
-	vim /etc/fdfs/client.conf
+	vim /etc/fdfs/client.conf  -- 修改tracker的一些配置
 	/usr/bin/fdfs_test /etc/fdfs/client.conf upload /home/wangdh/aaa.png     
 
 	[root@localhost fdfs]# /usr/bin/fdfs_test /etc/fdfs/client.conf upload /home/wangdh/test.png
@@ -151,7 +140,7 @@
 	file crc32=2282309726
 	example file url: http://192.168.77.132/group1/M00/00/00/wKhNhFj5dpSAaVsZAAASQogJSF4627_big.png
 
-> 我们现在知道图片的访问地址我们也访问不了，因为我们还没装 FastDFS 的 Nginx 模块
+> 返回的http://192.168.77.132/group1/M00/00/00/wKhNhFj5dpSAaVsZAAASQogJSF4627.png 即为图片的地址，知道图片的访问地址也访问不了，因为还没装 FastDFS 的 Nginx 模块
 
 
 ### 安装 fastdfs-nginx-module
@@ -167,25 +156,26 @@
 	
 	压根就没有local
 
-	cp mod_fastdfs.conf /etc/fdfs/  
+	-- 下面的Nginx模块的配置文件，默认是存放到该路径的
+	cp mod_fastdfs.conf /etc/fdfs/   
 
 	修改如下几项：
 	tracker_server=192.168.199.130:22122
 	store_path0=/home/zq/fastdfs
 	base_path=/home/zq/fastdfs
-	url_have_group_name = true（配置多个tracker时，应该将此项设置为true）
+	url_have_group_name = true（配置多个group时，应该将此项设置为true）
 
+	-- Nginx需要是要到该配置文件
 	cp /home/wangdh/fastdfs-5.05/conf/http.conf /etc/fdfs
 	cp /home/wangdh/fastdfs-5.05/conf/mime.types /etc/fdfs  
 
-	yum -y update
 	yum -y install pcre*
 	yum -y install openssl*
 	wget http://nginx.org/download/nginx-1.7.8.tar.gz
 	tar -zxvf nginx-1.7.8.tar.gz
-	yum -y  install gcc
-	yum -y install gcc-c++
 	cd /nginx-1.7.8/
+	
+	-- 编译的时候将Nginx模块加进去
 	./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-http_spdy_module --with-http_stub_status_module --with-pcre --add-module=/home/wangdh/fastdfs-nginx-module/src
 	make & make install
 
@@ -194,6 +184,10 @@
 
 	vim /etc/fdfs/mod_fastdfs.conf
 	vim /usr/local/nginx/conf/nginx.conf
+
+	mod_fastdfs.conf是Nginx模块的配置文件，可以配置tracker的地址和每个组访问的端口和文件实际存储的地址。
+
+	需要在每个storage上部署Nginx模块，才能访问该存储节点上的数据。
 
 	添加如下内容：
 	
@@ -204,9 +198,8 @@
 	这里的group1是组名，需要和mod_fastdfs.conf中的一致。
 
 
-> 如果一台机器上部署了多个storage节点，nginx如何代理
+> 如果一台机器上部署了多个storage节点，配置如下
 
-	
 		/etc/fdfs/mod_fastdfs.conf 配置文件配置如下
 
 		connect_timeout=2
@@ -236,39 +229,22 @@
 		store_path_count=1
 		store_path0=/data/fastdfs/storage/group2
 
-	nginx.conf需要为每个组做配置，如下：
+		nginx.conf需要为每个组做配置，如下：
+	
+		location /wangdh/{
+	            ngx_fastdfs_module;
+	        }
+	
+		location /wangdh02/{
+	            ngx_fastdfs_module;
+	        }
+		或
+		 location ~* /(.+?)/M00 {
+		      root /home/dfs/fdfs/$1/data/M00;
+		      ngx_fastdfs_module;
+		   }
 
-	location /wangdh/{
-            ngx_fastdfs_module;
-        }
 
-	location /wangdh02/{
-            ngx_fastdfs_module;
-        }
-
-	 location ~* /(.+?)/M00 {
-	      root /home/dfs/fdfs/$1/data/M00;
-	      ngx_fastdfs_module;
-	   }
-
-### FastDFS可用的命令(/usr/bin)
-
-	fdfs_appender_test
-	fdfs_appender_test1
-	fdfs_append_file
-	fdfs_crc32
-	fdfs_delete_file
-	fdfs_download_file
-	fdfs_file_info
-	fdfs_monitor
-	fdfs_storaged
-	fdfs_test
-	fdfs_test1
-	fdfs_trackerd
-	fdfs_upload_appender
-	fdfs_upload_file
-	restart.sh
-	stop.sh
 
 
 
