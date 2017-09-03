@@ -122,3 +122,7 @@
 ### 使用Nginx服务
 
 	service nginx start|stop|status|restart|condrestart|try-restart|reload|force-reload|configtest
+
+### 设置开机启动
+
+	chkconfig nginx on
