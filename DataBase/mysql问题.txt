@@ -1,0 +1,6 @@
+1. 外部机子连不上mysql，报10038错误
+	该问题是"远程3306端口未对外开放"
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '1q2#E$R' WITH GRANT OPTION;
+
+
