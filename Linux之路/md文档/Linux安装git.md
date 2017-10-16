@@ -25,3 +25,10 @@
 - 测试安装
 
 		git --version
+
+### Ubuntu
+
+- 需要先安装依赖
+
+		sudo apt-get install libcurl4-openssl-dev  libexpat1-dev 
+		sudo apt-get install libssl-dev 
