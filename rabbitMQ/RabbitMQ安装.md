@@ -46,3 +46,21 @@
 >[http://jingyan.baidu.com/article/e4d08ffdb3ff090fd2f60d28.html](http://jingyan.baidu.com/article/e4d08ffdb3ff090fd2f60d28.html)
 
 >[http://www.rabbitmq.com/install-rpm.html](http://www.rabbitmq.com/install-rpm.html)
+
+
+### Ubuntu安装rabbitmq
+
+由于rabbitMq需要erlang语言的支持，在安装rabbitMq之前需要安装erlang，执行命令：
+
+sudo apt-get install erlang-nox
+ 安装rabbitMq命令：
+
+2.$ sudo apt-get update
+3.$ sudo apt-get install rabbitmq-server
+启动、停止、重启、状态rabbitMq命令：
+
+启动：sudo rabbitmq-server start
+关闭： sudo rabbitmq-server stop
+重启： sudo rabbitmq-server restart
+查看状态：sudo rabbitmqctl status
+ 
