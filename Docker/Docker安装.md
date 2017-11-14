@@ -24,8 +24,20 @@ Docker支持CentOS 6及以后版本。
 
 ### Ubuntu中安装Docker
 
+	sudo apt-get update
+	sudo apt-get install docker-ce // 安装最新版本
+	apt-cache madison docker-ce // 列出可用版本
 	
+			root@db-server:/usr/local/docker# apt-cache madison docker-ce
+			docker-ce | 17.09.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu/ trusty/stable amd64 Packages
+			docker-ce | 17.06.2~ce-0~ubuntu | https://download.docker.com/linux/ubuntu/ trusty/stable amd64 Packages
+			docker-ce | 17.06.1~ce-0~ubuntu | https://download.docker.com/linux/ubuntu/ trusty/stable amd64 Packages
+			docker-ce | 17.06.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu/ trusty/stable amd64 Packages
+			docker-ce | 17.03.2~ce-0~ubuntu-trusty | https://download.docker.com/linux/ubuntu/ trusty/stable amd64 Packages
+			docker-ce | 17.03.1~ce-0~ubuntu-trusty | https://download.docker.com/linux/ubuntu/ trusty/stable amd64 Packages
+			docker-ce | 17.03.0~ce-0~ubuntu-trusty | https://download.docker.com/linux/ubuntu/ trusty/stable amd64 Packages
 
+	sudo apt-get install docker-ce=<VERSION> // 安装指定版本
 
 
 ### Windows下安装
