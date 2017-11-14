@@ -38,7 +38,10 @@ Docker支持CentOS 6及以后版本。
 			docker-ce | 17.03.0~ce-0~ubuntu-trusty | https://download.docker.com/linux/ubuntu/ trusty/stable amd64 Packages
 
 	sudo apt-get install docker-ce=<VERSION> // 安装指定版本
-
+	
+	sudo apt-get purge docker-ce // 移除docker
+	sudo rm -rf /var/lib/docker  // 删除docker相关数据
+	sudo apt-get remove docker docker-engine docker.io // 卸载docker
 
 ### Windows下安装
 
