@@ -11,6 +11,7 @@
 Docker命令位于/usr/bin/下，命令模式如下：
 
 	docker [options] command [arg...]
+	docker command --help // 查看命令的使用
 
 目前Docker支持如下命令
 
@@ -58,3 +59,43 @@ Docker命令位于/usr/bin/下，命令模式如下：
 
 
 ### 容器相关
+
+
+
+
+
+
+
+
+### 命令参数详解
+
+- run命令
+
+		格式：docker run [Options] Image [Command] [args...]
+		常用的Options：
+		-a：关联标准输入输出
+		-c：cpu share
+		-d：后台运行容器
+		-h：容器的hostname
+		-i：保持标准输入开启
+		-l：设置容器的标签数据
+		-m：内存限制，单位byte
+		-p：映射容器端口到主机端口
+		-P：绑定容器暴露的端口到随机端口
+		--rm：退出容器后自动删除容器
+		-t：进入容器并开启终端
+		-u：指定用户
+		-v：挂载数据卷
+		--volumes-from：指定需要挂载数据卷的容器
+		-w：容器内的工作目录
+		--name：指定容器的名字
+	
+- build命令
+
+		格式：docker build [Options] PATH | URL |  
+		PATH是构建时的上下文路径 
+		常用的Options：
+		-f：dockerfile的文件名称，默认是Dockerfile
+		-t：构建镜像的标签，name:tag
+		
+	
