@@ -23,7 +23,7 @@ Docker命令位于/usr/bin/下，命令模式如下：
 	diff ： 检查一个文件系统的修改
 	events ： 从服务端获取实时的事件
 	exec : 进入容器并执行命令，docker exec 容器名称/容器id command
-	export : 到出容器为一个tar包，docker export 容器名称/容器id > file_path
+	export : 导出容器为一个tar包，docker export 容器名称/容器id > file_path
 	history ： 显示一个镜像的历史
 	images : 查看本地镜像，docker images
 	import : 导入镜像，cat file_path | sudo docker import - image_name:tag
@@ -71,6 +71,7 @@ Docker命令位于/usr/bin/下，命令模式如下：
 
 - run命令
 
+		根据镜像创建并运行容器
 		格式：docker run [Options] Image [Command] [args...]
 		常用的Options：
 		-a：关联标准输入输出
@@ -92,10 +93,17 @@ Docker命令位于/usr/bin/下，命令模式如下：
 	
 - build命令
 
+		根据Dockerfile创建镜像
 		格式：docker build [Options] PATH | URL |  
 		PATH是构建时的上下文路径 
 		常用的Options：
 		-f：dockerfile的文件名称，默认是Dockerfile
 		-t：构建镜像的标签，name:tag
 		
-	
+- exec命令
+
+		进入容器并执行命令
+		格式：docker exec [Options] 	container command
+		常用的Options：
+		-i：开启交互，保持标准输入
+		-t：开启终端
