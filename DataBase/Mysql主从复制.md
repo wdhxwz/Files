@@ -29,14 +29,14 @@
 	   +------------------+----------+--------------+------------------+
 	   | File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |
 	   +------------------+----------+--------------+------------------+
-	   | mysql-bin.000004 |      308 |              |                  |
+	   | mysql-bin.000001 |      439 |              |                  |
 	   +------------------+----------+--------------+------------------+
 	   1 row in set (0.00 sec)
 	   注：执行完此步骤后不要再操作主服务器MYSQL，防止主服务器状态值变化
 
 ### 7、配置从服务器Slave：
-	   mysql>change master to master_host='192.168.145.222',master_user='mysync',master_password='q123456',
-	         master_log_file='mysql-bin.000004',master_log_pos=308;   //注意不要断开，308数字与上一步查到的308对应。
+	   mysql>change master to master_host='192.168.1.65',master_user='mysync',master_password='q123456',
+	         master_log_file='mysql-bin.000001',master_log_pos=439;   //注意不要断开，308数字与上一步查到的308对应。
 	
 	   Mysql>start slave;    //启动从服务器复制功能
 

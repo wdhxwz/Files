@@ -23,3 +23,5 @@
 
 	myid ： dataDir中，放置一个myid的文件，这个文件就一个数字，标志zookeeper服务
 
+ 
+	需要在dataDir目录下新建myid文件，里面存放这是第几台服务器
