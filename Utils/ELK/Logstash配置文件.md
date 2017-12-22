@@ -28,7 +28,7 @@ Logstash配置文件的结构如下：
 
 配置文件可以有下面的数据类型：
 
-	数组 ： user => [{id => 1,name = bob},{id = 2,name = jane}]
+	数组 ： user => [{id = 1,name = bob},{id = 2,name = jane}]
 	列表 : path =>["/home/wangdh/logs","/data/apps/dubboadmin"]
 	布尔值 ： ssl_enable = true
 	字符串：codec => "json"

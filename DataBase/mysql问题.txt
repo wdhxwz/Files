@@ -3,4 +3,19 @@
 
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '1q2#E$R' WITH GRANT OPTION;
 
+2. Unknown column 'dot.dev_did' in 'on clause'
+	A表是主表， A表与B表级联，B表与C表级联，在语句中，B表与C表的级联语句写在了A表与B表级联语句前面，则报了上面的错误
+	eg：
+	FROM DEV_OPER_LOG dol
+		INNER JOIN SYS_DEVICE_INFO dev ON dot.dev_did = dev.did
+		INNER JOIN dev_oper_target dot ON dot.oper_id = dol.id
+	调整下级联顺序即可。	
+
+
+
+
+
+
+
+
 

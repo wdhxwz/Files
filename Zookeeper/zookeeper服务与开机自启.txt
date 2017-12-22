@@ -1,0 +1,34 @@
+/etc/init.d/zookeeper
+
+#!/bin/bash
+#chkconfig:2345 20 90
+#description:zookeeper
+#processname:zookeeper
+zookeeper_home=/usr/local/soft/zookeeper-3.4.10
+source /etc/profile
+case $1 in
+          start) su root $zookeeper_home/zkServer.sh start;;
+          stop) su root $zookeeper_home/bin/zkServer.sh stop;;
+          status) su root $zookeeper_home/bin/zkServer.sh status;;
+          restart) su root $zookeeper_home/bin/zkServer.sh restart;;
+          *)  echo "require start|stop|status|restart"  ;;
+esac
+
+update-rc.d zookeeper defaults // 添加开机自启
+update-rc.d zookeeper remove   // 移除开机自启
+
+
+centOS下，使用
+chkconfig --add zookeeper
+chkconfig --del zookeeper
+chkconfig zookeeper --list
+
+
+
+chkconfig工具不在ubuntu官方的默认源。是redhat公司开发，一般redhat和centos默认安装
+
+
+方式3：
+apt-get install sysv-rc-conf  // 安装sysv-rc-conf
+sysv-rc-conf // 打开了命令行方式的自启动服务管理界面
+sysv-rc-conf --level 2345 zookeeper on/off  // 设置自启动

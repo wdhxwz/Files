@@ -140,11 +140,47 @@ CentOS 7的yum源中貌似没有正常安装mysql时的mysql-sever文件，需�
 		恢复
 			mysql -u root -p ccc < back_aaa
 	
+### Ubuntu安装mysql
 
+<<<<<<< HEAD
 - 参考资料
 
 		http://www.linuxidc.com/Linux/2013-01/78716p3.htm
+=======
+首先执行下面三条命令：
 
+	sudo apt-get install mysql-server
+	
+	sudo apt install mysql-client
+	
+	sudo apt install libmysqlclient-dev
+
+安装成功后可以通过下面的命令测试是否安装成功：
+
+	sudo netstat -tap | grep mysql
+
+可以通过如下命令进入MySQL服务：
+
+	mysql -uroot -p你的密码
+
+现在设置mysql允许远程访问，首先编辑文件/etc/mysql/mysql.conf.d/mysqld.cnf：
+
+	sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+
+注释掉bind-address = 127.0.0.1：
+
+保存退出，然后进入mysql服务，执行授权命令：
+
+	grant all on *.* to root@'%' identified by 'opopop' with grant option; // opopop是密码
+
+	flush privileges;
+
+然后执行quit命令退出mysql服务，执行如下命令重启mysql：
+
+	service mysql restart
+>>>>>>> 176172c645a683f42f02934de3a086c5b739b1a5
+
+现在在Windows下可以使用navicat远程连接Ubuntu下的MySQL服务：
 
 
 
