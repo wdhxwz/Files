@@ -141,7 +141,9 @@ CentOS 7的yum源中貌似没有正常安装mysql时的mysql-sever文件，需�
 			mysql -u root -p ccc < back_aaa
 	
 
+- 参考资料
 
+		http://www.linuxidc.com/Linux/2013-01/78716p3.htm
 
 
 
