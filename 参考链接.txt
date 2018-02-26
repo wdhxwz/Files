@@ -1,0 +1,17 @@
+Maven 手动添加 JAR 包到本地仓库：http://www.blogjava.net/fancydeepin/archive/2012/06/12/380605.html
+maven常用插件--maven-install-plugin：http://rogerming.iteye.com/blog/1980992
+Maven-008-Nexus 私服部署发布报错：http://www.cnblogs.com/fengpingfan/p/5197608.html
+maven快照版本和发布版本：http://blog.csdn.net/aosica321/article/details/54837645
+Maven常用插件使用说明之deploy：http://blog.csdn.net/gztly/article/details/6019586
+
+使用Maven为一个项目生成多个Jar包：http://www.tuicool.com/articles/amYbYj
+
+PowerDesigner逆向工程导入MYSQL数据库总结：http://blog.csdn.net/chamtianjiao/article/details/7258316
+可能出现问题：http://blog.csdn.net/xiaotianlan/article/details/50372766
+
+
+
+
+
+
+
