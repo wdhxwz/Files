@@ -1,0 +1,149 @@
+'******************************************************************************   
+'* File:     pdm2excel.txt   
+'* Title:    pdm export to excel   
+'* Purpose:  To export the tables and columns to Excel   
+'* Model:    Physical Data Model   
+'* Objects:  Table, Column, View   
+'* Author:   Chirs   
+'* Created:  2015-01-28   
+'* Version:  1.0   
+'******************************************************************************   
+Option Explicit   
+   Dim rowsNum   
+   rowsNum = 0   
+'-----------------------------------------------------------------------------   
+' Main function   
+'-----------------------------------------------------------------------------   
+' Get the current active model   
+Dim Model   
+Set Model = ActiveModel   
+If (Model Is Nothing) Or (Not Model.IsKindOf(PdPDM.cls_Model)) Then   
+  MsgBox "The current model is not an PDM model."   
+Else   
+' Get the tables collection   
+'创建EXCEL APP   
+  
+  
+Dim beginrow  
+Dim EXCEL, BOOK, SHEET  
+Set EXCEL = CreateObject("Excel.Application")  
+EXCEL.Visible = True  
+Set BOOK = EXCEL.Workbooks.Add(-4167) '新建工作簿  
+  
+BOOK.Sheets(1).Name = "数据库表结构"  
+Set SHEET = EXCEL.workbooks(1).sheets("数据库表结构")  
+  
+ShowProperties Model, SHEET  
+EXCEL.visible = true   
+'设置列宽和自动换行   
+SHEET.Columns(1).ColumnWidth = 10     
+SHEET.Columns(2).ColumnWidth = 30     
+SHEET.Columns(3).ColumnWidth = 20     
+  
+SHEET.Columns(1).WrapText =true   
+SHEET.Columns(2).WrapText =true   
+SHEET.Columns(3).WrapText =true   
+  
+End If  
+  
+'-----------------------------------------------------------------------------   
+' Show properties of tables   
+'-----------------------------------------------------------------------------   
+Sub ShowProperties(mdl, sheet)   
+   ' Show tables of the current model/package   
+   rowsNum=0   
+   beginrow = rowsNum+1   
+   ' For each table   
+   output "begin"   
+   Dim tab   
+   For Each tab In mdl.tables   
+      ShowTable tab,sheet   
+   Next   
+   if mdl.tables.count > 0 then   
+        sheet.Range("A" & beginrow + 1 & ":A" & rowsNum).Rows.Group   
+   end if   
+   output "end"   
+End Sub  
+  
+'-----------------------------------------------------------------------------   
+' 数据表查询   
+'-----------------------------------------------------------------------------  
+Sub ShowTable(tab, sheet)     
+   If IsObject(tab) Then   
+     Dim rangFlag  
+      sheet.cells(1, 1) = "序号"   
+      sheet.cells(1, 2) = "表名"  
+      sheet.cells(1, 3) = "表含义"  
+      '设置边框   
+      sheet.Range(sheet.cells(1, 1),sheet.cells(1, 3)).Borders.LineStyle = "1"  
+      '设置背景颜色  
+      sheet.Range(sheet.cells(1, 1),sheet.cells(1, 3)).Interior.ColorIndex = "19"  
+  
+      rowsNum = rowsNum + 1  
+      sheet.cells(rowsNum+1, 1) = rowsNum   
+      sheet.cells(rowsNum+1, 2) = tab.code  
+      sheet.cells(rowsNum+1, 3) = tab.comment  
+      '设置边框  
+      sheet.Range(sheet.cells(rowsNum+1,1),sheet.cells(rowsNum+1,3)).Borders.LineStyle = "2"  
+  
+      '增加Sheet  
+      BOOK.Sheets.Add , BOOK.Sheets(BOOK.Sheets.count)  
+      BOOK.Sheets(rowsNum+1).Name = tab.code
+  
+      Dim shtn  
+      Set shtn = EXCEL.workbooks(1).sheets(tab.code)  
+      '设置列宽和换行  
+       shtn.Columns(1).ColumnWidth = 30     
+       shtn.Columns(2).ColumnWidth = 20     
+       shtn.Columns(3).ColumnWidth = 20  
+       shtn.Columns(4).ColumnWidth = 30     
+       shtn.Columns(5).ColumnWidth = 20     
+       shtn.Columns(6).ColumnWidth = 20     
+       shtn.Columns(7).ColumnWidth = 20     
+  
+       shtn.Columns(1).WrapText =true   
+       shtn.Columns(2).WrapText =true   
+       shtn.Columns(3).WrapText =true 
+       shtn.Columns(4).WrapText =true   
+       shtn.Columns(5).WrapText =true   
+       shtn.Columns(6).WrapText =true
+       shtn.Columns(7).WrapText =true  
+  
+       '设置列标题  
+       shtn.cells(1, 1) = "字段中文名"   
+       shtn.cells(1, 2) = "字段名"  
+       shtn.cells(1, 3) = "字段类型"  
+       shtn.cells(1, 4) = "长度" 
+       shtn.cells(1, 5) = "是否主键"  
+       shtn.cells(1, 6) = "不为空"  
+       shtn.cells(1, 7) = "注释"  
+       '设置边框   
+       shtn.Range(shtn.cells(1, 1),shtn.cells(1, 7)).Borders.LineStyle = "2"  
+       '设置背景颜色  
+       shtn.Range(shtn.cells(1, 1),shtn.cells(1, 7)).Interior.ColorIndex = "19"  
+  
+      Dim col ' running column   
+      Dim colsNum  
+      Dim rNum   
+      colsNum = 0  
+      rNum = 0   
+            for each col in tab.columns   
+              rNum = rNum + 1   
+              colsNum = colsNum + 1   
+  
+            shtn.cells(rNum+1, 1) = col.name   
+            shtn.cells(rNum+1, 2) = col.code   
+            shtn.cells(rNum+1, 3) = col.datatype   
+            shtn.cells(rNum+1, 4) = col.length    
+            shtn.cells(rNum+1, 5) = col.primary   
+            shtn.cells(rNum+1, 6) = col.mandatory   
+            shtn.cells(rNum+1, 7) = col.comment 
+            shtn.Range(shtn.cells(rNum+1,1),shtn.cells(rNum+1,7)).Borders.LineStyle = "2"  
+            next   
+            shtn.Range(shtn.cells(rNum+1,1),shtn.cells(rNum+1,7)).Borders.LineStyle = "2"           
+            rNum = rNum + 1   
+  
+            Output "FullDescription: "       + tab.Name  
+  
+   End If     
+End Sub 
