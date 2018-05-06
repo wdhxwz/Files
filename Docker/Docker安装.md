@@ -66,5 +66,8 @@ Docker支持CentOS 6及以后版本。
 	修改仓库位置： other_args="--insecure-registry hub.c.163.com -H unix:///var/run/docker.sock -H 0.0.0.0:43988"  
 	加速服务： curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://fb4e85e4.m.daocloud.io
 
+### 搭建WordPress
 
+docker run --name db --env MYSQL_ROOT_PASSWORD=example -d mariadb
+docker run --name MyWordPress --link db:mysql -p 8081:80 -d wordpress
 
