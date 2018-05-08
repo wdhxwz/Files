@@ -1,0 +1,101 @@
+{
+    "前端":{
+        "Vue.js":{
+            "description":"Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。",
+            "urls":[
+                {"从零开始搭建VUE项目":"https://www.cnblogs.com/cczlovexw/p/7691786.html"},
+                {"vue构建单页应用原理":"https://www.cnblogs.com/zhaowy/p/8513070.html"},
+                {"Vue2.0 新手入门 — 从环境搭建到发布":"http://www.runoob.com/w3cnote/vue2-start-coding.html"},
+                {"Vue2.0表单校验组件vee-validate的使用":"https://www.cnblogs.com/xxwang/p/6104715.html"},
+                {"Vue.js官网":"https://cn.vuejs.org/"}
+            ]
+        },
+        "iView":{
+            "description":"iView 是一套基于 Vue.js 的开源 UI 组件库，主要服务于 PC 界面的中后台产品。",
+            "urls":[
+                {"官网":"https://www.iviewui.com/docs/guide/introduce" }
+            ]
+        },
+        "Element":{
+            "description":"Element，一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库",
+            "urls":[
+                {"官网":"http://element-cn.eleme.io/#/zh-CN"}
+            ]
+        }
+    },
+    "服务器":{
+        "resin":{
+            "description":"Resin(英[ˈrezɪn]/美[ˈrezn])是CAUCHO公司的产品，是一个非常流行的application server，对servlet和JSP提供了良好的支持，性能也比较优良，resin自身采用JAVA语言开发。",
+            "urls":[
+                {"官网":"http://caucho.com/products/resin/doc"},
+                {"Resin使用详解":"https://blog.csdn.net/li_guang/article/details/2172806"},
+                {"Resin 性能监控":"http://www.oneapm.com/ai/java/resin.html"},
+                {"resin配置心得":"https://www.iyunv.com/thread-344437-1-1.html"}
+            ]
+        }
+    },
+    "后端":{
+        "thrift":{
+            "description":"thrift是一个软件框架，用来进行可扩展、跨语言的服务开发。它结合了功能强大的软件堆栈和代码生成引擎，以构建在 C++, Java, Go,Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, and OCaml 这些编程语言间无缝结合的、高效的服务。",
+            "urls":[
+                {"home page":"http://thrift.apache.org/"},
+                {"thrift使用总结":"https://blog.csdn.net/qq_27784479/article/details/73250958"},
+                {"thrift系列":"https://blog.csdn.net/hrn1216/article/details/51306395"},
+                {"Thrift":"https://segmentfault.com/a/1190000010938841"},
+                {"跨语言服务部署框架Thrift简介":"https://www.biaodianfu.com/thrift.html"},
+                {"和 Thrift 的一场美丽邂逅":"https://www.cnblogs.com/cyfonly/p/6059374.html"},
+                {"Apache Thrift - 可伸缩的跨语言服务开发框架":"https://www.ibm.com/developerworks/cn/java/j-lo-apachethrift/"},
+                {"源码分析":"https://blog.csdn.net/whycold/article/category/1251519"}
+            ]
+        },
+        "RPC":{
+            "description":"RPC（即Remote Procedure Call，远程过程调用）",
+            "urls":[
+                {"RPC服务和HTTP服务对比":"https://blog.csdn.net/wangyunpeng0319/article/details/78651998"},
+                {"为什么需要RPC，而不是简单的HTTP接口":"https://www.cnblogs.com/winner-0715/p/5847638.html"}
+            ]
+        },
+        "Apache Mina":{
+            "description":"Apache Mina是一个能够帮助用户开发高性能和高伸缩性网络应用程序的框架。它通过Java nio技术基于TCP/IP和UDP/IP协议提供了抽象的、事件驱动的、异步的API。",
+            "urls":[
+                {"Apache Mina专题":"https://blog.csdn.net/whycold/article/category/778932"}
+            ]
+
+        }
+    },
+    "others":[
+        {"解决老浏览器不支持ES6的方法":"https://blog.csdn.net/qq_36380426/article/details/71082158"}
+    ],
+    "工具":{
+        "Maven":{
+            "description":"Maven项目对象模型(POM)，可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。",
+            "urls":[
+                {"Maven 手动添加 JAR 包到本地仓库":"http://www.blogjava.net/fancydeepin/archive/2012/06/12/380605.html"},
+                {"maven常用插件--maven-install-plugin":"http://rogerming.iteye.com/blog/1980992"},
+                {"Maven-008-Nexus 私服部署发布报错":"http://www.cnblogs.com/fengpingfan/p/5197608.html"},
+                {"maven快照版本和发布版本":"http://blog.csdn.net/aosica321/article/details/54837645"},
+                {"Maven常用插件使用说明之deploy":"http://blog.csdn.net/gztly/article/details/6019586"},
+                {"使用Maven为一个项目生成多个Jar包":"http://www.tuicool.com/articles/amYbYj"}
+            ]
+        },
+        "PowerDesigner":{
+            "description":"PowerDesigner是Sybase的企业建模和设计解决方案，采用模型驱动方法，将业务与IT结合起来，可帮助部署有效的企业体系架构，并为研发生命周期管理提供强大的分析与设计技术。",
+            "urls":[
+                {"PowerDesigner逆向工程导入MYSQL数据库总结":"http://blog.csdn.net/chamtianjiao/article/details/7258316"},
+                {"可能出现问题":"http://blog.csdn.net/xiaotianlan/article/details/50372766"}
+            ]
+
+        }
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
