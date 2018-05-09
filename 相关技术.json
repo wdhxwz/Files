@@ -32,6 +32,16 @@
                 {"Resin 性能监控":"http://www.oneapm.com/ai/java/resin.html"},
                 {"resin配置心得":"https://www.iyunv.com/thread-344437-1-1.html"}
             ]
+        },
+        "JSVC":{
+            "description":"Java Service,jsvc是一套用c编写的程序，是tomcat发行版自带的一套代码。是Jakarta Commons Daemon 工程的一个复制品。只有该版本的jsvc是绑定到tomcat二进制发行版中。这意味着它要与该版本的Tomcat一同使用",
+            "urls":[
+                {"JSVC启动Tomcat":"https://blog.csdn.net/tianxuan911/article/details/47086231"},
+                {"jsvc将tomcat配置成服务":"https://blog.csdn.net/huaishuming/article/details/52182745"},
+                {"分布式进阶(五)之JSVC配置":"https://blog.csdn.net/sunhuaqiang1/article/details/45874497"},
+                {"使用 jsvc 启动tomcat":"https://blog.csdn.net/yujin2010good/article/details/75274612"}
+            ]
+
         }
     },
     "后端":{
