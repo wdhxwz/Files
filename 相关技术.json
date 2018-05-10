@@ -39,15 +39,19 @@
                 {"JSVC启动Tomcat":"https://blog.csdn.net/tianxuan911/article/details/47086231"},
                 {"jsvc将tomcat配置成服务":"https://blog.csdn.net/huaishuming/article/details/52182745"},
                 {"分布式进阶(五)之JSVC配置":"https://blog.csdn.net/sunhuaqiang1/article/details/45874497"},
-                {"使用 jsvc 启动tomcat":"https://blog.csdn.net/yujin2010good/article/details/75274612"}
+                {"使用 jsvc 启动tomcat":"https://blog.csdn.net/yujin2010good/article/details/75274612"},
+                {"tomcat启动时SessionIdGeneratorBase.createSecureRandom耗时5分钟的问题":"https://blog.csdn.net/sxhong/article/details/62889003"}
             ],
             "remarks":[
                 "./jsvc -jvm server -java-home /usr/local/jdk1.8.0_161 -pidfile /usr/local/tomcat-8.5.29/jsvc.pid -Djava.util.logging.config.file=/usr/local/tomcat-8.5.29/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -classpath /usr/local/tomcat-8.5.29/bin/bootstrap.jar:/usr/local/tomcat-8.5.29/bin/tomcat-juli.jar:/usr/local/tomcat-8.5.29/bin/commons-daemon.jar -Dcatalina.base=/usr/local/tomcat-8.5.29/ -Dcatalina.home=/usr/local/tomcat-8.5.29 -Djava.io.tmpdir=/usr/local/tomcat-8.5.29/temp org.apache.catalina.startup.Bootstrap start",
                 "jsvc.exec -jvm server -java-home /usr/local/java -user www-data -pidfile /data/services/tomcat_base/cmsgame.yy.com/run/tomcat.pid -wait 10 -outfile /data/services/tomcat_base/cmsgame.yy.com/logs/catalina.log -errfile &1 -classpath /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/commons-daemon.jar:/data/services/tomcat_base/cmsgame.yy.com/bin/tomcat-juli.jar -Dnop -Xms1024m -Xmx2048m -Duser.timezone=Asia/Shanghai -Xmn512m -XX:PermSize=192m -Xss256k -XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:LargePageSizeInBytes=128m -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70 -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Duser.timezone=Asia/Shanghai -Dfile.encoding=UTF-8 -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.endorsed.dirs= -Dcatalina.base=/data/services/tomcat_base/cmsgame.yy.com -Dcatalina.home=/usr/local/tomcat -Djava.io.tmpdir=/data/services/tomcat_base/cmsgame.yy.com/temp org.apache.catalina.startup.Bootstrap"
             ],
             "success":[
-                "./jsvc -jvm server -java-home /usr/local/jdk1.8.0_161 -pidfile /usr/local/tomcat-8.5.29/jsvc.pid -wait 10 -outfile /usr/local/tomcat-8.5.29/logs/catalina.log -errfile /usr/local/tomcat-8.5.29/logs/catalina.err -Djava.util.logging.config.file=/usr/local/tomcat-8.5.29/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -classpath /usr/local/tomcat-8.5.29/bin/bootstrap.jar:/usr/local/tomcat-8.5.29/bin/tomcat-juli.jar:/usr/local/tomcat-8.5.29/bin/commons-daemon.jar -Dcatalina.base=/usr/local/tomcat-8.5.29/ -Dcatalina.home=/usr/local/tomcat-8.5.29 -Djava.io.tmpdir=/usr/local/tomcat-8.5.29/temp org.apache.catalina.startup.Bootstrap ",
+                "./jsvc -jvm server -java-home /usr/local/jdk1.8.0_161 -pidfile /usr/local/tomcat-8.5.29/jsvc.pid -wait 10 -outfile /usr/local/tomcat-8.5.29/logs/catalina.log -errfile /usr/local/tomcat-8.5.29/logs/catalina.err -Djava.util.logging.config.file=/usr/local/tomcat-8.5.29/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -classpath /usr/local/tomcat-8.5.29/bin/bootstrap.jar:/usr/local/tomcat-8.5.29/bin/tomcat-juli.jar:/usr/local/tomcat-8.5.29/bin/commons-daemon.jar -Dcatalina.base=/usr/local/tomcat-8.5.29/ -Dcatalina.home=/usr/local/tomcat-8.5.29 -Djava.security.egd=file:/dev/./urandom -Djava.io.tmpdir=/usr/local/tomcat-8.5.29/temp org.apache.catalina.startup.Bootstrap ",
                 "./jsvc -stop -pidfile /usr/local/tomcat-8.5.29/jsvc.pid org.apache.catalina.startup.Bootstrap"  
+            ],
+            "problems":[
+                {"tomcat启动耗时10分钟之久":" org.apache.catalina.util.SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [876,368] milliseconds"}
             ]
         }
     },
