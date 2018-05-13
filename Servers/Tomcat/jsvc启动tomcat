@@ -1,0 +1,97 @@
+#!/bin/bash
+# tomcat: Start/Stop/Restart tomcat  
+#  
+# chkconfig: 2345 85 15  
+# description: Apache tomcat8  
+  
+# Small shell script to show how to start/stop Tomcat using jsvc  
+
+# Tomcat根目录
+TOMCAT_HOME=/usr/local/tomcat-8.5.29
+
+JAVA_HOME=/usr/local/jdk1.8.0_161
+
+# pid文件
+PID=$TOMCAT_HOME/jsvc.pid
+
+# tmp目录
+TMP_DIR=$TOMCAT_HOME/temp
+
+# 日志文件
+OUT_FILE=$TOMCAT_HOME/logs/catalina.log
+
+# 错误日志
+ERR_FILE=$TOMCAT_HOME/logs/catalina.err
+
+# ClassPath
+CLASS_PATH=$TOMCAT_HOME/bin/bootstrap.jar:$TOMCAT_HOME/bin/tomcat-juli.jar:$TOMCAT_HOME/bin/commons-daemon.jar
+
+start1(){
+    ./jsvc -jvm server -java-home /usr/local/jdk1.8.0_161 -pidfile /usr/local/tomcat-8.5.29/jsvc.pid -wait 10 -outfile /usr/local/tomcat-8.5.29/logs/catalina.log -errfile /usr/local/tomcat-8.5.29/logs/catalina.err -Djava.util.logging.config.file=/usr/local/tomcat-8.5.29/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -classpath /usr/local/tomcat-8.5.29/bin/bootstrap.jar:/usr/local/tomcat-8.5.29/bin/tomcat-juli.jar:/usr/local/tomcat-8.5.29/bin/commons-daemon.jar -Dcatalina.base=/usr/local/tomcat-8.5.29/ -Dcatalina.home=/usr/local/tomcat-8.5.29 -Djava.security.egd=file:/dev/./urandom -Djava.io.tmpdir=/usr/local/tomcat-8.5.29/temp org.apache.catalina.startup.Bootstrap
+}
+
+start(){
+echo -n $"Starting Tomcat: "  
+    $TOMCAT_HOME/bin/jsvc \
+-jvm server \
+-java-home $JAVA_HOME \
+-pidfile $PID \
+-wait 10 \
+-outfile $OUT_FILE \
+-errfile $ERR_FILE \
+-Djava.util.logging.config.file=$TOMCAT_HOME/conf/logging.properties \
+-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager \
+-classpath $CLASS_PATH \
+-Dcatalina.base=$TOMCAT_HOME \
+-Dcatalina.base=$TOMCAT_HOME \
+-Djava.security.egd=file:/dev/./urandom \
+-Djava.io.tmpdir=$TMP_DIR \
+org.apache.catalina.startup.Bootstrap
+echo "*****************************[ok]"  
+}
+
+stop(){
+    echo -n $"Stopping Tomcat: "  
+    $TOMCAT_HOME/bin/jsvc -stop -pidfile $PID org.apache.catalina.startup.Bootstrap
+    echo "*****************************[ok]" 
+}
+
+status() {  
+     ps ax --width=1000 | grep "[o]rg.apache.catalina.startup.Bootstrap" | awk '{printf $1 " "}' | wc | awk '{print $2}' >/tmp/tomcat_process_count.txt  
+     read line < /tmp/tomcat_process_count.txt  
+     if [ $line -gt 0 ]; then  
+       echo -n "tomcat ( pid "  
+       ps ax --width=1000 | grep "[o]rg.apache.catalina.startup.Bootstrap" | awk '{printf $1 " "}'  
+       echo ") is running                             "  
+     else  
+       echo "Tomcat is stopped"  
+     fi  
+}  
+
+case "$1" in  
+  start)  
+    # Start Tomcat  
+    start  
+    exit $?  
+    ;;  
+  
+  stop)  
+    # Stop Tomcat  
+    stop  
+    exit $?  
+    ;;  
+  restart)  
+    # Restart Tomcat  
+    stop  
+    sleep 3  
+    start  
+    exit $?  
+    ;;  
+   status)  
+    status  
+    exit $?  
+    ;;  
+  *)  
+    echo "Usage: tomcat8080 {start|stop|restart|status}"  
+    exit 1;;  
+esac  

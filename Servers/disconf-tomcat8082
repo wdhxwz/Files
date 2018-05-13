@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# Tomcat的Home目录
+tomcat_home=/usr/local/disconf-tomcat8082
+
+start()
+{
+ $tomcat_home'/bin/startup.sh'
+ sleep 1
+ echo "started ......"
+}
+
+stop()
+{
+# 找到Tomcat进程的ID并kill掉
+pid=`ps aux | grep $tomcat_home | grep -v grep | awk '{print $2}'` 
+echo "pid:"$pid
+ps -ef | grep $tomcat_home | grep -v grep | awk {'print $2'} | xargs kill -9
+sleep 1
+echo 'kill success'
+}
+case $1 in
+start) 
+start
+;;
+stop)
+stop
+;;
+restart) 
+stop
+sleep 1
+start
+;;
+*) 
+echo 'usage {start | stop | restart}'
+;;
+esac
