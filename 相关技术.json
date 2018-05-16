@@ -23,6 +23,12 @@
             "urls":[
                 {"官网":"http://element-cn.eleme.io/#/zh-CN"}
             ]
+        },
+        "ECMAScript":{
+            "description":"ECMAScript 规范定义了一种脚本语言实现应该包含的内容，但是，因为它是可扩充的，所以其实现所提供的功能与这个最小集相比可能变化很大。 ECMAScript本身并不是一种脚本语言。正如在 Web 应用程序中执行有用操作的 bean 集合（例如，Netscape 的 AWT）是 Sun 的 JavaBean 规范的一种实现一样，JavaScript 是 ECMAScript 规范的一种实现。",
+            "urls":[
+                {"ECMAScript教程":"https://www.w3cschool.cn/ecmascript/"}
+            ]
         }
     },
     "服务器":{
