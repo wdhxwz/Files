@@ -1,0 +1,11 @@
+1.定义一个xsd文件
+2.创建一个类，实现BeanDefinitionParser接口，用于解析xsd文件中定义的标签(可以在这里也将自定义的标签bean注册到Spring容器)
+3.创建一个Handler，继承自NamespaceHandlerSupport，注册解析器到Spring容器
+4.在resource/META-INF目录下，创建文件：Spring.handlers和Spring.schemas
+http\://leopard.game.yy.com/schema/leopard-0.1.xsd=leopard/schema/game/leopard-0.1.xsd
+http\://leopard.game.yy.com/schema/leopard.xsd=leopard/schema/game/leopard-0.1.xsd
+
+http\://leopard.game.yy.com/schema/leopard=com.duowan.leopard.schema.LeopardNamespaceHandler
+http\://leopard.yy.com/schema/leopard=com.duowan.leopard.schema.LeopardNamespaceHandler
+
+
