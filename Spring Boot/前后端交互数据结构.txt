@@ -1,0 +1,47 @@
+-- 整体响应格式
+{
+	"code":200,
+	"data":{
+	},
+	"message":"请求成功"
+}
+
+-- 菜单请求接口响应
+{
+	"menuList":[
+		{
+			"icon":"config", -- 菜单的图标
+			"menuId":1, -- 菜单ID
+			"name":"参数管理", -- 菜单名称
+			"open":null, 
+			"orderNum":1, -- 排序编号
+			"parentId":1, -- 父级菜单ID
+			"parentName":"", -- 父级菜单明细
+			"perms":"", -- 该菜单下所有的权限
+			"type":1,   -- 菜单类型 0:目录,1:菜单,2:按钮
+			"url":"",   -- 该菜单对应的url
+			"list":[]   -- 子菜单列表，实体结构一致
+		}
+		...
+	],
+	"permissions":["sys:user:list","sys:user:update","sys:config:item"]
+}
+
+菜单树，只有叶子节点的菜单才需要添加到Vue的Router中
+菜单展示，才需要展示完整的菜单树
+
+检测路由变化：添加tab页(支持Vue的route填充和iframe的嵌套)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
