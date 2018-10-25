@@ -74,3 +74,12 @@ spring-boot-devtools 是一个为开发者服务的一个模块，其中最重�
 
 	# 关闭自动重启
 	spring.devtools.restart.enabled=false
+
+
+### Remake
+
+IDEA 热部署设置：
+
+File -> Settings -> Compiler 勾选上Build project automatically  
+
+快捷键ctrl+alt+shift  / ,选择Registry，然后勾选上compiler.automake.allow.when.app.running
