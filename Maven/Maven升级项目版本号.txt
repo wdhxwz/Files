@@ -1,0 +1,5 @@
+mvn versions:set -DgenerateBackupPoms=false -DnewVersion=0.0.2-SNAPSHOT
+
+mvn versions:update-child-modules -DgenerateBackupPoms=false
+
+
