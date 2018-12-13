@@ -1,0 +1,66 @@
+1. 日志变量
+logger -- 日志记录器
+上下文为Java
+变量
+
+/**
+ * logger
+ */
+private static final Logger LOGGER = LoggerFactory.getLogger($CLASS$.class);
+
+
+2. 字段注释
+触发：//
+
+/**
+ * $name$
+ */
+ 
+ 
+ 3. 方法注释
+ 
+ 
+  *
+ * $name$
+ * 
+ * @author  dw_wangdonghong
+ * @date  $date$ $time$
+ $params$  
+ * @return $return$       
+ */
+ 
+ param变量(设置defaultValue)
+ 
+ groovyScript("def result=''; def params=\"${_1}\".replaceAll('[\\\\[|\\\\]|\\\\s]', '').split(',').toList(); for(i = 0; i < params.size(); i++) {result+='* @param ' + params[i] + ((i < params.size() - 1) ? '\\n ' : '')}; return result", methodParameters())
+ 
+ 
+ 4. 枚举类模板
+ 
+ #if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+/**
+* ${NAME} 
+*
+* @author dw_wangdonghong
+* @version V1.0
+* @since ${DATE} ${TIME}
+*/
+public enum ${NAME} implements BaseEnum<${Type}>{
+
+    ;
+    ${NAME}(${Type} code,String desc){
+        this.code = code;
+        this.desc = desc;
+    }
+    private ${Type} code;
+    private String desc;
+    
+    @Override
+    public ${Type} getCode(){
+        return this.code;
+    }
+    
+    @Override
+    public String getDesc(){
+        return this.desc;
+    }
+}
