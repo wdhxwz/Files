@@ -64,3 +64,11 @@ public enum ${NAME} implements BaseEnum<${Type}>{
         return this.desc;
     }
 }
+
+5. map循环模板
+
+map.
+
+for (Map.Entry<String, String> entry : map.entrySet()) {
+
+}
