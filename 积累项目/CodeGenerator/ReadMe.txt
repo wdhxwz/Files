@@ -10,6 +10,7 @@
 -- 获取数据库、表、列
 SHOW DATABASES;
 SELECT table_name FROM information_schema.tables WHERE table_schema='pushsystem';
+SELECT table_name,table_comment FROM information_schema.tables WHERE table_schema='pushsystem';
 SELECT column_name,ordinal_position,column_default,data_type,column_comment FROM information_schema.columns WHERE table_schema ='pushsystem'  AND table_name = 'push_app';
 
 
