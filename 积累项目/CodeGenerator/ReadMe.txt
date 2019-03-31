@@ -19,38 +19,11 @@ https://blog.csdn.net/taxuexumei/article/details/80362706
 https://blog.csdn.net/qq_27529917/article/details/78447865
 
 
-oracle:
 
-    driverClass：oracle.jdbc.OracleDriver
+    <link rel="stylesheet" href="libs/morris.js/morris.css">
+	    <link rel="stylesheet" href="libs/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 
-    url：jdbc:oracle:thin:@127.0.0.1:1521:dbname
-
-mysql:
-
-　driverClass：com.mysql.jdbc.Driver
-
-　  url: jdbc:mysql://localhost:3306/test?characterEncoding=utf8&useSSL=true   注意: 高版本的 mysql 需要显示指定 useSSL
-
-DB2
-
-    driverClass：com.ibm.db2.jcc.DB2Driver
-
-    url：jdbc:db2://127.0.0.1:50000/dbname
-
-sybase
-
-    driverClass：com.sybase.jdbc.SybDriver
-
-    url：jdbc:sybase:Tds:localhost:5007/dbname
-
-PostgreSQL
-
-    driverClass：org.postgresql.Driver
-
-    url：jdbc:postgresql://localhost/dbname
-
-Sql Server
-
-    driverClass：com.microsoft.sqlserver.jdbc.SQLServerDriver
-
-    url：jdbc:sqlserver://localhost:1433; DatabaseName=dbname
+    <link rel="stylesheet" href="libs/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
