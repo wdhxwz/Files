@@ -175,7 +175,7 @@
     </dependencies>
 
     <properties>
-        <spring4.version>4.3.4.RELEASE</spring4.version>
+        <spring4.version>5.2.20.RELEASE</spring4.version>
     </properties>
 
     <build>
